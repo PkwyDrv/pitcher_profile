@@ -35,8 +35,8 @@ st.scatter_chart(data=df, x='k_percent', y=['put_away', 'hard_hit_percent', 'whi
 #format sidebar dropdown menus
 st.sidebar.header('Please select each:')
 team = st.sidebar.selectbox('Team', df['team_name_alt'].sort_values().unique())
-pitchers = df['last_name, first_name'].sort_values().unique() 
-pitcher_choice = pitchers[df['team_name_alt'] == team]
+pitchers = .sort_values().unique() 
+pitcher_choice = df['last_name, first_name'].drop_duplicates().loc[df['team_name_alt'] == team]
 pitcher = st.sidebar.selectbox('Pitcher', pitcher_choice)
 
 if st.sidebar.button("**Get Data**"):
