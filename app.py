@@ -43,26 +43,19 @@ if st.sidebar.button("**Get Data**"):
     st.header(f'{pitcher}')
     #define selected pitcher data to use
     pitches = df['pitch_name'].unique()
-    thrown = df['pitches'].loc[df['last_name, first_name'] == pitcher]
-    percent_pitched = df['pitch_usage'].loc[df['last_name, first_name'] == pitcher]
-    strike_percent = df['k_percent'].loc[df['last_name, first_name'] == pitcher]
-    whiff_percent = df['whiff_percent'].loc[df['last_name, first_name'] == pitcher]
-    put_away_percent = df['put_away'].loc[df['last_name, first_name'] == pitcher]
-    hard_hit_percent = df['hard_hit_percent'].loc[df['last_name, first_name'] == pitcher]
+    metrics = {
+    'pitches_thrown': df['pitches'].loc[df['last_name, first_name'] == pitcher],
+    'percent_pitched': df['pitch_usage'].loc[df['last_name, first_name'] == pitcher],
+    'strike_percent': df['k_percent'].loc[df['last_name, first_name'] == pitcher],
+    'whiff_percent': df['whiff_percent'].loc[df['last_name, first_name'] == pitcher],
+    'put_away_percent': df['put_away'].loc[df['last_name, first_name'] == pitcher],
+    'hard_hit_percent': df['hard_hit_percent'].loc[df['last_name, first_name'] == pitcher]
+    }
 
-
-#create a histogram for each metric
-    fig_thrown = px.histogram(thrown, x=pitches, title="Number of Pitches Thrown MLB 2023", nbins=11, width=600, height=400)
-    fig_thrown.show()
-    fig_percent_pitched = px.histogram(percent_pitched, x=pitches, title="Pitched Percent MLB 2023", nbins=11, width=600, height=400)
-    fig_percent_pitched.show()
-    fig_strike = px.histogram(strike_percent, x=pitches, title="Strike Percent MLB 2023", nbins=11, width=600, height=400)
-    fig_strike.show()
-    fig_whiff = px.histogram(whiff_percent, x=pitches, title="Percent of Whiffs per Pitch MLB 2023", nbins=11, width=600, height=400)
-    fig_whiff.show()
-    fig_put_away = px.histogram(put_away_percent, x=pitches, title="Percent Punch Out Pitches MLB 2023", nbins=11, width=600, height=400)
-    fig_put_away.show()
-    fig_hard_hit = px.histogram(hard_hit_percent, x=pitches, title="Percent Pitches for Hard Hits MLB 2023", nbins=11, width=600, height=400)
-    fig_hard_hit.show()
+    for metric in metrics:
+        # create a histogram for each metric
+        fig = px.histogram(metric, x=pitches, title='key', nbins=11, width=600, height=400)
+        
+    fig.show()
     
 
