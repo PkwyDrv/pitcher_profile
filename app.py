@@ -9,7 +9,7 @@ pitch_data = statcast_pitcher_arsenal_stats(2023, minPA=0, )
 pitch_csv = pitch_data.to_csv('pitch_data.csv', sep=',')
 pitch_2023 = pd.read_csv('pitch_data.csv')
 
-@st.cache
+@st.cache_data
 def load_data():
     return pitch_2023
 df = load_data()
@@ -35,12 +35,13 @@ st.scatter_chart(data=df, x='k_percent', y=['put_away', 'hard_hit_percent', 'whi
 #format sidebar dropdown menus
 st.sidebar.header('Please select each:')
 team = st.sidebar.selectbox('Team', df['team_name_alt'].sort_values().unique())
-pitcher_choice = df['last_name, first_name'].sort_values().loc[df['team_name_alt'] == team] 
+pitchers = df['last_name, first_name'].sort_values().unique() 
+pitcher_choice = pitchers[df['team_name_alt'] == team]
 pitcher = st.sidebar.selectbox('Pitcher', pitcher_choice)
 
 if st.sidebar.button("**Get Data**"):
     
-    st.write(f'###{pitcher}###')
+    st.header(f'{pitcher}')
     #define selected pitcher data to use
     pitches = df['pitch_name'].unique()
     thrown = df['pitches'].loc[df['last_name, first_name'] == pitcher]
