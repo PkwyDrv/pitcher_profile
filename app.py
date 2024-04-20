@@ -52,7 +52,7 @@ if st.sidebar.button("**Get Data**"):
     
     st.header(f'{pitcher}')
 
-    for pitcher, metric in metrics:
+    for metric in metrics:
         # create a histogram for each metric
         fig = px.histogram(metrics[metric], x=pitches, nbins=11, width=600, height=400)
         fig.show()
