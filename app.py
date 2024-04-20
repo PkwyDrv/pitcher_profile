@@ -38,21 +38,21 @@ team = st.sidebar.selectbox('Team', df['team_name_alt'].sort_values().unique())
 pitcher_choice = df['last_name, first_name'].drop_duplicates().loc[df['team_name_alt'] == team]
 pitcher = st.sidebar.selectbox('Pitcher', pitcher_choice)
 
+ #define selected pitcher data to use
+pitches = df['pitch_name'].unique()
+metrics = {
+'pitches_thrown': df['pitches'].loc[df['last_name, first_name'] == pitcher],
+'percent_pitched': df['pitch_usage'].loc[df['last_name, first_name'] == pitcher],
+'strike_percent': df['k_percent'].loc[df['last_name, first_name'] == pitcher],
+'whiff_percent': df['whiff_percent'].loc[df['last_name, first_name'] == pitcher],
+'put_away_percent': df['put_away'].loc[df['last_name, first_name'] == pitcher],
+'hard_hit_percent': df['hard_hit_percent'].loc[df['last_name, first_name'] == pitcher]
+    }
 if st.sidebar.button("**Get Data**"):
     
     st.header(f'{pitcher}')
-    #define selected pitcher data to use
-    pitches = df['pitch_name'].unique()
-    metrics = {
-    'pitches_thrown': df['pitches'].loc[df['last_name, first_name'] == pitcher],
-    'percent_pitched': df['pitch_usage'].loc[df['last_name, first_name'] == pitcher],
-    'strike_percent': df['k_percent'].loc[df['last_name, first_name'] == pitcher],
-    'whiff_percent': df['whiff_percent'].loc[df['last_name, first_name'] == pitcher],
-    'put_away_percent': df['put_away'].loc[df['last_name, first_name'] == pitcher],
-    'hard_hit_percent': df['hard_hit_percent'].loc[df['last_name, first_name'] == pitcher]
-    }
 
-    for metric in metrics:
+    for pitcher, metric in metrics:
         # create a histogram for each metric
         fig = px.histogram(metrics[metric], x=pitches, nbins=11, width=600, height=400)
         fig.show()
