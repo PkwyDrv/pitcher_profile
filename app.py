@@ -53,10 +53,9 @@ metrics = [pitches, pitches_thrown, percent_pitched, strike_percent, whiff_perce
 if st.sidebar.button('Get Data'):       
     st.header(f'{pitcher}')
         # create a histogram for each metric
-    for metric in metrics:
         
-        fig = px.histogram(metric, x=pitches, nbins=11, width=600, height=400)
-        fig.show()
+    fig = px.histogram(df[df['last_name, first_name'] == pitcher], x=pitches, nbins=11, width=600, height=400)
+    fig.show()
 
 
 
