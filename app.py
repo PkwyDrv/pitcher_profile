@@ -50,14 +50,12 @@ hard_hit_percent = df['hard_hit_percent'].loc[df['last_name, first_name'] == pit
 
 metrics = [pitches, pitches_thrown, percent_pitched, strike_percent, whiff_percent, put_away_percent, hard_hit_percent]
 
-for metric in metrics:
-    # create a histogram for each metric
-    fig = px.histogram(metric, x=pitches, nbins=11, width=600, height=400)
-    
-if st.sidebar.button('Get Data'):       
+if st.sidebar.button('Get Data'): 
     st.header(f'{pitcher}')
-        
-    st.plotly_chart(fig, use_container_width=True)
+    for metric in metrics:
+    # create a histogram for each metric
+        fig = px.histogram(metrics[metric], x=pitches, nbins=11, width=600, height=400)  
+        st.plotly_chart(fig, use_container_width=True)
 
 
 
