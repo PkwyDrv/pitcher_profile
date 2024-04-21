@@ -46,6 +46,7 @@ percent_pitched = df['pitch_usage'].groupby([df['last_name, first_name'] == pitc
 strike_percent = df['k_percent'].groupby([df['last_name, first_name'] == pitcher])
 whiff_percent = df['whiff_percent'].groupby([df['last_name, first_name'] == pitcher])
 put_away_percent = df['put_away'].groupby([df['last_name, first_name'] == pitcher])
+hard_hit_percent = df['hard_hit_percent'].groupby([df['last_name, first_name'] == pitcher])
 
 metrics = [pitches_thrown, percent_pitched, strike_percent, whiff_percent, put_away_percent, hard_hit_percent]
 
