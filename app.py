@@ -57,7 +57,7 @@ for metric in metrics:
 if st.sidebar.button('Get Data'):       
     st.header(f'{pitcher}')
         
-    fig.show()
+    st.plotly_chart(fig, use_container_width=True)
 
 
 
