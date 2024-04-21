@@ -41,20 +41,20 @@ pitcher = st.sidebar.selectbox('Pitcher', pitcher_choice)
 
  #define selected pitcher data to use
 pitches = df['pitch_name'].unique()
-pitches_thrown = df['pitches'].loc[(df['last_name, first_name'] == pitcher) & (df['pitch_name'].isin(pitches))]
-percent_pitched = df['pitch_usage'].loc[(df['last_name, first_name'] == pitcher) & (df['pitch_name'].isin(pitches))]
-strike_percent = df['k_percent'].loc[(df['last_name, first_name'] == pitcher) & (df['pitch_name'].isin(pitches))]
-whiff_percent = df['whiff_percent'].loc[(df['last_name, first_name'] == pitcher) & (df['pitch_name'].isin(pitches))]
-put_away_percent = df['put_away'].loc[(df['last_name, first_name'] == pitcher) & (df['pitch_name'].isin(pitches))]
-hard_hit_percent = df['hard_hit_percent'].loc[(df['last_name, first_name'] == pitcher) & (df['pitch_name'].isin(pitches))]
+pitches_thrown = df['pitches'].where(df['last_name, first_name'] == pitcher and df['pitch_type'].isin(pitches), inplace=True)
+percent_pitched = df['pitch_usage'].where(df['last_name, first_name'] == pitcher and df['pitch_type'].isin(pitches), inplace=True)
+strike_percent = df['k_percent'].where(df['last_name, first_name'] == pitcher and df['pitch_type'].isin(pitches), inplace=True)
+whiff_percent = df['whiff_percent'].where(df['last_name, first_name'] == pitcher and df['pitch_type'].isin(pitches), inplace=True)
+put_away_percent = df['put_away'].where(df['last_name, first_name'] == pitcher and df['pitch_type'].isin(pitches), inplace=True)
+hard_hit_percent = df['hard_hit_percent'].where(df['last_name, first_name'] == pitcher and df['pitch_type'].isin(pitches), inplace=True)
 
-metrics = [pitches, pitches_thrown, percent_pitched, strike_percent, whiff_percent, put_away_percent, hard_hit_percent]
+metrics = [pitches_thrown, percent_pitched, strike_percent, whiff_percent, put_away_percent, hard_hit_percent]
 
 if st.sidebar.button('Get Data'): 
     st.header(f'{pitcher}')
     for metric in metrics:
     # create a histogram for each metric
-        fig = px.histogram(metric, x=pitches, nbins=11, width=600, height=400) 
+        fig = px.histogram(metric) 
         fig.update_yaxes(range=[0, 100]) 
         st.plotly_chart(fig, use_container_width=True)
 
