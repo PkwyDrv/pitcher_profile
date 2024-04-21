@@ -55,7 +55,7 @@ if st.sidebar.button('Get Data'):
         # create a histogram for each metric
     for metric in metrics:
         
-        fig = px.histogram(df, x=pitches, y=metric, nbins=11, width=600, height=400)
+        fig = px.histogram(metric, x=pitches, nbins=11, width=600, height=400)
         fig.show()
 
 
