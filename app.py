@@ -41,12 +41,12 @@ pitcher = st.sidebar.selectbox('Pitcher', pitcher_choice)
 
  #define selected pitcher data to use
 pitches = df['pitch_name'].unique()
-pitches_thrown = df['pitches'].where(df['last_name, first_name'] == pitcher and df['pitch_type'].isin(pitches), inplace=True)
-percent_pitched = df['pitch_usage'].where(df['last_name, first_name'] == pitcher and df['pitch_type'].isin(pitches), inplace=True)
-strike_percent = df['k_percent'].where(df['last_name, first_name'] == pitcher and df['pitch_type'].isin(pitches), inplace=True)
-whiff_percent = df['whiff_percent'].where(df['last_name, first_name'] == pitcher and df['pitch_type'].isin(pitches), inplace=True)
-put_away_percent = df['put_away'].where(df['last_name, first_name'] == pitcher and df['pitch_type'].isin(pitches), inplace=True)
-hard_hit_percent = df['hard_hit_percent'].where(df['last_name, first_name'] == pitcher and df['pitch_type'].isin(pitches), inplace=True)
+pitches_thrown = df['pitches'].where(df['last_name, first_name'] == pitcher & df['pitch_type'].isin(pitches), inplace=True)
+percent_pitched = df['pitch_usage'].where(df['last_name, first_name'] == pitcher & df['pitch_type'].isin(pitches), inplace=True)
+strike_percent = df['k_percent'].where(df['last_name, first_name'] == pitcher & df['pitch_type'].isin(pitches), inplace=True)
+whiff_percent = df['whiff_percent'].where(df['last_name, first_name'] == pitcher & df['pitch_type'].isin(pitches), inplace=True)
+put_away_percent = df['put_away'].where(df['last_name, first_name'] == pitcher & df['pitch_type'].isin(pitches), inplace=True)
+hard_hit_percent = df['hard_hit_percent'].where(df['last_name, first_name'] == pitcher & df['pitch_type'].isin(pitches), inplace=True)
 
 metrics = [pitches_thrown, percent_pitched, strike_percent, whiff_percent, put_away_percent, hard_hit_percent]
 
