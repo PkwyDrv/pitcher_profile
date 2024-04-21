@@ -54,7 +54,8 @@ if st.sidebar.button('Get Data'):
     st.header(f'{pitcher}')
     for metric in metrics:
     # create a histogram for each metric
-        fig = px.histogram(metric, x=pitches, nbins=11, width=600, height=400)  
+        fig = px.histogram(metric, x=pitches, nbins=11, width=600, height=400) 
+        fig.update_yaxes(range=[0, 100]) 
         st.plotly_chart(fig, use_container_width=True)
 
 
