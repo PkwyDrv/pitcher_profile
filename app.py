@@ -48,8 +48,8 @@ if st.sidebar.button('Get Data'):
     st.header(f'{pitcher}')
     for col in columns:
     # create a histogram for each metric
-        fig = px.histogram(filtered_df[f'{col}'], x=filtered_df['pitch_name'], y=filtered_df[f'{col}'], labels={'x': 'Pitch', 'sum of y':f'{col}'})  
-        fig.update_layout
+        fig = px.histogram(filtered_df[f'{col}'], x=filtered_df['pitch_name'], y=filtered_df[f'{col}'], labels={'x': 'Pitch'})  
+        fig.update_layout(yaxis_title=f'{col}')
         st.plotly_chart(fig, use_container_width=True)
 
 
