@@ -40,21 +40,14 @@ pitcher = st.sidebar.selectbox('Pitcher', pitcher_choice)
 
 
  #define selected pitcher data to use
-pitches = df['pitch_name'].unique()
-pitches_thrown = df.groupby([df['last_name, first_name'] == pitcher])[['pitch_name', 'pitches']]
-percent_pitched = df.groupby([df['last_name, first_name'] == pitcher])[['pitch_name', 'pitch_usage']]
-strike_percent = df.groupby([df['last_name, first_name'] == pitcher])[['pitch_name', 'k_percent']]
-whiff_percent = df.groupby([df['last_name, first_name'] == pitcher])[['pitch_name', 'whiff_percent']]
-put_away_percent = df.groupby([df['last_name, first_name'] == pitcher])[['pitch_name', 'put_away']]
-hard_hit_percent = df.groupby([df['last_name, first_name'] == pitcher])[['pitch_name', 'hard_hit_percent']]
-
-metrics = [pitches_thrown, percent_pitched, strike_percent, whiff_percent, put_away_percent, hard_hit_percent]
+results_df = df.loc[df['last_name, first_name'] == pitcher]
+colunms = ['pitches', 'pitch_usage', 'whiff_percent', 'k_percent', 'put_away', 'hard_hit_percent']
 
 if st.sidebar.button('Get Data'): 
     st.header(f'{pitcher}')
-    for metric in metrics:
+    for col in colunms:
     # create a histogram for each metric
-        fig = px.histogram(metric) 
+        fig = px.histogram(results_df[col], x='pitch_name') 
         fig.update_yaxes(range=[0, 100]) 
         st.plotly_chart(fig, use_container_width=True)
 
