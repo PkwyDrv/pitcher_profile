@@ -41,14 +41,15 @@ pitcher = st.sidebar.selectbox('Pitcher', pitcher_choice)
 
  #define selected pitcher data to use
 results_df = df.loc[df['last_name, first_name'] == pitcher]
-colunms = ['pitches', 'pitch_usage', 'whiff_percent', 'k_percent', 'put_away', 'hard_hit_percent']
+columns = ['pitches', 'pitch_usage', 'whiff_percent', 'k_percent', 'put_away', 'hard_hit_percent']
 
 if st.sidebar.button('Get Data'): 
     st.header(f'{pitcher}')
-    for col in colunms:
+    for col in columns:
     # create a histogram for each metric
-        fig = px.histogram(results_df, x=['pitch_name']) 
-        fig.update_yaxes(range=[0, 100]) 
+        unstacked_df = results_df[[col, 'pitch_name']].set_index('pitch_name', append=True).col.unstack('pitch_name')
+        fig = px.histogram(unstacked_df) 
+        #fig.update_yaxes(range=[0, 100]) 
         st.plotly_chart(fig, use_container_width=True)
 
 
