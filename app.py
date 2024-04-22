@@ -49,7 +49,7 @@ if st.sidebar.button('Get Data'):
     for col in columns:
     # create a histogram for each metric
         plot_df = results_df.groupby('last_name, first_name')[['pitch_name', f'{col}']]
-        fig = px.histogram(plot_df, x=['pitch_name'], color='species') 
+        fig = px.histogram(plot_df, x=['pitch_name']) 
         #fig.update_yaxes(range=[0, 100]) 
         st.plotly_chart(fig, use_container_width=True)
 
