@@ -47,7 +47,7 @@ if st.sidebar.button('Get Data'):
     st.header(f'{pitcher}')
     for col in colunms:
     # create a histogram for each metric
-        fig = px.histogram(results_df[col], x='pitch_name') 
+        fig = px.histogram(results_df, x=['pitch_name'], y=[col]) 
         fig.update_yaxes(range=[0, 100]) 
         st.plotly_chart(fig, use_container_width=True)
 
