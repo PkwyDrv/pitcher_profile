@@ -5,6 +5,10 @@ This app analyzes individual MLB pitcher arsenals based on pitch type, featuring
     * **Python libraries:** streamlit, pandas, plotly.express, numpy, pybaseball, and seaborn
     * **Data source:** [baseballsavant.mlb.com](https://baseballsavant.mlb.com/)
 
+## Link
+
+- [App](https://pitcher-profile.onrender.com)
+
 
 ## Authors
 
@@ -13,14 +17,18 @@ This app analyzes individual MLB pitcher arsenals based on pitch type, featuring
 
 ## Installation
 
-Install pitcher_profile python requirements with pip
+Install pitcher_profile from repository
 
 ```bash
+  git clone https://github.com/PkwyDrv/pitcher_profile
   cd pitcher_profile
   pip install requirements.txt
+  python app.py
 ```
     
 ## Requirements
+python==3.12.0
+
 pandas==2.2.2
 
 scipy==1.13.0
