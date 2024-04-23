@@ -7,7 +7,7 @@ This app analyzes individual MLB pitcher arsenals based on pitch type, featuring
 
 ## Link
 
-- [App](https://pitcher-profile.onrender.com)
+- [Web App](https://pitcher-profile.onrender.com)
 
 
 ## Authors
